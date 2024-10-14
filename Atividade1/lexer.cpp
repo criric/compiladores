@@ -31,21 +31,29 @@ void Lexer::IgnoreComment()
 		}
 		else if (peek == '*')
 		{ // Comentário de bloco
-			// Ignora até encontrar */
+			// Ignora até encontrar "*/"
 			while (true)
 			{
-				peek = cin.get();
+				peek = cin.get(); // Lê o próximo caractere
 				if (peek == EOF)
 					break; // Proteção para fim de arquivo
+
 				if (peek == '*')
-				{
-					peek = cin.get();
+				{										// Possível fechamento do comentário
+					peek = cin.get(); // Lê o próximo caractere
 					if (peek == '/')
-						break; // Encontrou "*/"
+					{										// Comentário de bloco fechado
+						peek = cin.get(); // Avança para o próximo caractere após "*/"
+						break;
+					}
 				}
 			}
-			// Avança para o próximo caractere
-			peek = cin.get();
+		}
+		else
+		{
+			// Se não for um comentário, é um operador de divisão
+			cout << "</> "; // Exibe o token de divisão
+			return;					// Sai da função sem recursão
 		}
 	}
 }
@@ -60,11 +68,11 @@ Token Lexer::Scan()
 		peek = cin.get();
 	}
 
-	// Verifica se encontrou um comentário e ignora
+	// Verifica se encontrou '/' (divisão ou comentário)
 	if (peek == '/')
 	{
-		IgnoreComment(); // Ignora o comentário
-		return Scan();	 // Continua procurando um token
+		IgnoreComment(); // Ignora o comentário ou retorna o token de divisão
+		return Scan();	 // Continua procurando tokens após o comentário
 	}
 
 	// Retorna números
