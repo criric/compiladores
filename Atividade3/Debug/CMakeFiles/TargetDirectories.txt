@@ -1,0 +1,3 @@
+/c/Users/crist/OneDrive/Documentos/Projetos/Compiladores-CF/Lab11/Debug/CMakeFiles/tradutor.dir
+/c/Users/crist/OneDrive/Documentos/Projetos/Compiladores-CF/Lab11/Debug/CMakeFiles/edit_cache.dir
+/c/Users/crist/OneDrive/Documentos/Projetos/Compiladores-CF/Lab11/Debug/CMakeFiles/rebuild_cache.dir
